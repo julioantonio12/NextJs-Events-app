@@ -2,13 +2,18 @@ import { useRouter } from "next/router";
 import EventContent from "../../components/event-detail/event-content";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventSummary from "../../components/event-detail/event-summary";
+import ErrorAlert from "../../components/UI/error-alert";
 import { getEventById } from "../../dummy-data";
 
 const EventDetail = () => {
   const router = useRouter();
   const event = getEventById(router.query.id);
   if (!event) {
-    return <p>No event found!</p>;
+    return (
+      <ErrorAlert>
+        <p>No event found!</p>
+      </ErrorAlert>
+    );
   }
   console.log(router.query);
 
